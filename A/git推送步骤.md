@@ -6,7 +6,7 @@
 git status    //查看状态
 git add .     //(add后面有个空格才到.)
 git commit -m "本次更新说明文字"
-git push origin main  //要是存储库是main就推到main 要是master就推到master
+git push -u origin main  //要是存储库是main就推到main 要是master就推到master
 
 ```
 
