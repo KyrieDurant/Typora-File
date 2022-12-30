@@ -10,3 +10,19 @@ git push -u origin main  //要是存储库是main就推到main 要是master就�
 
 ```
 
+如果推送过程中报错
+
+fatal: unable to access 'https://github.com/KyrieDurant/my-uniapp.git/': OpenSSL SSL_read: Connection was reset, errno 10054
+
+翻译内容：致命：无法访问'https://github.com/KyrieDurant/my-uniapp.git/'：OpenSSL SSL_read:连接已重置，错误号10054
+
+意思是git操作出现网络错误，通过代理也无法解决，可输入下面命令修改http的ssl认证，完成后再次推送即可
+
+```js
+git config --global http.sslVerify "false"
+```
+
+git的其他命令
+
+
+
