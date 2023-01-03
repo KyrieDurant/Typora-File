@@ -10,6 +10,8 @@ git push -u origin main  //要是存储库是main就推到main 要是master就�
 
 ```
 
+
+
 如果推送过程中报错
 
 fatal: unable to access 'https://github.com/KyrieDurant/my-uniapp.git/': OpenSSL SSL_read: Connection was reset, errno 10054
@@ -22,7 +24,13 @@ fatal: unable to access 'https://github.com/KyrieDurant/my-uniapp.git/': OpenSSL
 git config --global http.sslVerify "false"
 ```
 
-git的其他命令
+
+
+git拉取远程代码
+
+```js
+git clone + 拉取远程代码的地址
+```
 
 
 
