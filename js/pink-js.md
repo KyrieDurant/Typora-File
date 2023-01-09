@@ -241,12 +241,323 @@ alert('两个值的和为'+ c);
   ```
 
   
+  
+- swith语句
+
+  ```js
+  //语法结构 switch 转换、开关 case 小例子或者选项的意思
+  // 执行思路：表达式的值和value的值相匹配的时候就执行相对应的值的语句，如果都不匹配则执行default语句
+  // 针对表达式为特定值的时候使用，它的效率会比if else 要高，但是值变动时采用if else会更好
+  
+  // 1.表达式和value的值和数据类型都相匹配的时候才执行， 表达式 === value 
+  // 2.如果case里面没有break则不会退出，会继续执行下一个语句
+  var num = 1;
+  switch(num) {
+      case 1:
+          console.log('执行1的匹配项');
+          break;
+      case 2: {
+          console.log('执行2的匹配项');
+          break;
+      }
+      default:
+          console.log('执行1和2以外的匹配项');
+  }
+  
+  // 查询水果案例
+  // 在弹出框里输入水果，如果有这类水果就弹出该水果的价格，如果没有就弹出“没有此水果”
+  
+  var shuiguo = prompt('请输入水果类型查看价格：');
+  switch (shuiguo) {
+      case '苹果':
+          console.log('执行1的匹配项');
+          alert('苹果4块钱1斤');
+          break;
+      case '橘子': {
+          alert('橘子10块钱3斤');
+          break;
+      }
+      case '香蕉': {
+          alert('香蕉5块钱1斤');
+          break;
+      }
+      default:
+          alert('没有你要查询的水果');
+  }
+  ```
+
+  > switch语句和if else if语句的区别：
+  >
+  > 1. 一般情况下，它们两个可以相互替换
+  > 2. switch…case语句通常处理比较确定的值，而if…else…更加灵活，常用于范围判断
+  > 3. switch语句进行条件判断后直接执行到程序条件语句，效率更高。而if…else…有几种条件就得判断多少次。
+  > 4. 当分支比较少时,if…else…的执行效率比switch语句高，反之，分支多时switch效率高，而且结构更清晰。
+
+  
+
+- for循环
+
+  ```js
+  //例：1-100累加
+  var sum = 0;
+  for(i = 1; i<=100; i++){
+      sum = sum  + i;
+  }
+  console.log('1-100相加：',sum);
+  
+  // 求1-100之间所有能被3整除的数字的和
+  var num = 0;
+  for(i = 1; i<=100; i++){
+      if(i % 3 == 0){
+          num = num + i;
+      }
+  }
+  console.log('1-100所有数之间能被3整除的数之和：',num);
+  
+  // 求班级学生成绩的平均数：
+  // 要求用户输入班级人数，之后依次输入每个学生的成绩，最后打印出该班级的总成绩及平均成绩
+  var num = prompt('请输入班级学生人数');
+  var sum = 0;//求和的变量
+  var average = 0;//平均值
+  for(var i = 1; i<=num; i++){
+      var score = prompt('请输入第'+ i + '个学生的成绩');
+      sum = sum + parseFloat(score);
+  }
+  average = sum / num;
+  alert('总成绩是'+sum);
+  alert('平均成绩是：'+average);
+  ```
+
+  
+
+- 双重for循环
+
+  ```js
+  // 打印5行5列的星星
+  var star = '';
+  for(var i=1;i<=5;i++){
+      for(var j=0;j<=5;j++){
+          star = star + '★';
+      }
+      star = star + '\n';
+  }
+  console.log(star);
+  
+  // 打印正三角的星星
+  var star = '';
+  for(var i=1;i<=5;i++){
+      for(var j=0;j<i;j++){
+          star = star + '★';
+      }
+      star = star + '\n';
+  }
+  console.log(star);
+  
+  // 打印倒三角的星星
+  var star = '';
+  for(var i=1;i<=5;i++){
+      for(var j=0;j<=5-i;j++){
+          star = star + '★';
+      }
+      star = star + '\n';
+  }
+  console.log(star);
+  
+  //三种不同的打印方式都取决于第二层for循环打印的次数
+  
+  // 案例：九九乘法表
+  var str = '';
+  for(var i=1;i<=9;i++){
+      for(var j=1;j<=i;j++){
+          str = str + j + 'x' + i + '=' + i * j + '\t';
+      }
+      str = str + '\n';
+  }
+  console.log(str);
+  ```
+
+  
+
+- while循环
+
+  ```js
+  // 1.语法结构 while 当...的时候
+  // while (条件表达式) {
+  //     //循环体
+  // }
+  // 2.执行思路  当条件表达式结构为true时 执行循环体 否则退出循环
+  var a = 1;
+  while (a<7) {
+      console.log('a的值小于7');
+      a++;
+  }
+  // 3.里面也有计数器 初始化变量 
+  // 4.里面也有操作表达式 完成计数更新 防止死循环 a++;
+  
+  // 例：计算1-100之间的整数和
+  var sum = 0;
+  var n = 1;
+  while (n <= 100) {
+      sum += n;//相当于sum = sum + n;
+      n++;
+  }
+  console.log('1-100的和',sum);
+  
+  //弹出一个提示框，你要学习吗？  如果输入 学 就提示结束，否则一直询问。
+  var learn = prompt('你要学习吗？');
+  while (learn != '学！') {
+      learn = prompt('真的不学吗？');
+  }
+  alert('这才对嘛哈哈哈！');
+  ```
+
+  
+
+- do…while…循环
+
+  ```js
+  // 执行思路：先执行一次循环体，再判断条件 如果条件表达式为真，则继续执行循环，如果为假则退出循环
+  var i = 1;
+  do {
+      console.log('执行循环');
+      i++;
+  } while (i <=7)//当i大于7时while为假，停止循环,log打印了7次
+      
+  // 例：计算1-100的所有数的和
+  var sum = 0;
+  var j = 1;
+  do {
+      sum += j;
+      j++;
+  } while (j <= 100)
+  console.log(sum);
+  ```
+
+  > 大多数情况下我们更喜欢用for循环，while先判断后执行，可能一次也不会执行；do…while先执行一次，再判断是否继续执行
+
+  
+
+- 关键字 continue 和 break
+
+  ```js
+  // contnue 关键字用于立即跳出本次循环，继续下一次循环
+  // 吃包子跳过第三个包子不吃
+  for(var i = 1; i <= 5; i++) {
+      if (i == 3) {
+          continue;
+      }
+      console.log('我正在吃第'+ i +'个包子');
+  }
+  //得到的结果为打印了1,2,4,5个包子，第三个直接跳过
+  
+  // 求1-100之间，除了能被7整除之外的整数和
+  var sum = 0;
+  for (var i = 1; i <= 100; i++) {
+      if(i % 7 == 0){
+          continue;
+      }
+      sum  += i;
+  }
+  console.log('1-100之间，除了能被7整除之外的整数和为：', sum);
+  
+  // break 关键字 用于立即跳出整个循环(循环结束);
+  // 吃五个包子，吃完第3个的时候不想吃了
+  for(var i = 1; i <= 5; i++) {
+      if (i == 4) {
+          break;
+      }
+      console.log('我正在吃第'+ i +'个包子');
+  }
+  ```
+
+  
+
+- 数组遍历
+
+  ```js
+  // 例：求数组[7,11,2,35] 里面所有元素的平均值
+  var sz = [7,11,2,35];
+  var sum = 0;
+  for(var i = 1; i<this.sz.length;i++){
+      sum += this.sz[i];
+  }
+  console.log('数组相加的和：',sum);
+  var pjs = sum / this.sz.length;
+  console.log('平均数：',pjs);
+  
+  // 求数组[7,11,1,35,2,13]的最大值
+  var sz = [7,11,1,35,2,13];
+  var maxsz = 0;
+  for(var i = 1; i<this.sz.length;i++){
+      if(maxsz < this.sz[i]){
+          maxsz = this.sz[i];
+      }
+  
+  }
+  console.log('数组最大值为：',maxsz);
+  
+  // 例：将数组['kd','ky','hd']转换为字符串，并且用|或其他符号分割
+  var arr = ['kd','ky','hd'];
+  var zfc = '';
+  var fgf = '|';
+  for(var i = 0; i<this.arr.length;i++){
+      this.zfc += arr[i] + this.fgf; 
+  }
+  console.log('转换为字符串：', this.zfc);
+  ```
+
+  
+
+- 新增数组元素
+
+  ```js
+  var arr = ['kd','ky','hd'];
+  arr.push('pg');//添加到数组末尾
+  arr.unshift('mj');//添加到数组前面
+  console.log(arr);//['mj', 'kd', 'ky', 'hd', 'pg']
+  ```
+
+  
+
+- 筛选数组
+
+  ```js
+  //将数组中大于等于10的元素选出来，放入新数组。
+  var arr = [7,11,1,35,2,13];
+  var newArr = [];
+  var j = 0;
+  for(var i = 0; i<this.arr.length; i++){
+      if(this.arr[i] < 10){
+          this.newArr[j] = this.arr[i];
+          j++;
+      }
+  }
+  console.log(newArr);//[7, 1, 2]
+  ```
+
+  
+
+- 数组去重
+
+  ```js
+  // 将数组中的0去掉，生成一个新的数组
+  var arr = [7, 11, 0, 1, 35, 2, 0, 13];
+  var newArr = [];
+  for (var i = 0; i < this.arr.length; i++) {
+      if (this.arr[i] != 0) {
+          this.newArr[this.newArr.length] = this.arr[i];
+      }
+  }
+  console.log(newArr);
+  ```
+
+  
+
+ 
 
 
 
 
 
-
-
-已学到64
+已学到109
 

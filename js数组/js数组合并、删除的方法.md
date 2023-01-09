@@ -105,3 +105,14 @@ console.log(colors);    //["blue", "grey"]
 // console.log(colors.length);    //2
 ```
 
+
+
+## JS数组新增元素
+
+```js
+var arr = ['kd','ky','hd'];
+arr.push('pg');//添加到数组末尾
+arr.unshift('mj');//添加到数组前面
+console.log(arr);//['mj', 'kd', 'ky', 'hd', 'pg']
+```
+
