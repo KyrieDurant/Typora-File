@@ -1,4 +1,4 @@
-js内容
+## js基础内容
 
 ```js
 <script>
@@ -552,12 +552,42 @@ alert('两个值的和为'+ c);
   ```
 
   
+  
+- 翻转数组
 
- 
+  ```js
+  var arr = [1, 2, 7, 11, 13];
+  var newArr = [];
+  for (var i = this.arr.length - 1; i >= 0; i--) {
+      this.newArr[newArr.length] = this.arr[i];
+  }
+  console.log(this.newArr);
+  ```
+
+  
+
+- 冒泡排序
+
+  ```js
+  // 冒泡排序是一种算法，把一系列的数据按照一定的顺序进行排列显示(从小到大或从大到小)。
+  // 一次比较两个元素，如果它们的顺序错误就把它们交换过来
+  var arr = [35,7,11,2,13,1];
+  for (var i = 0; i<=this.arr.length-1; i++){ //外层循环管趟数
+      for(var j=0; j<=this.arr.length-i-1;j++){ //里面的循环管每一趟的交换次数
+          // 内部交换2个变量的值 前一个和后一个数组元素比较
+          if(this.arr[j]>this.arr[j+1]){
+              var temp = this.arr[j];
+              this.arr[j] = this.arr[j+1];
+              this.arr[j+1]=temp;
+          }
+      }
+  }
+  console.log(this.arr);//[1, 2, 7, 11, 13, 35]
+  ```
+
+  
 
 
 
-
-
-已学到109
+==**学到112**==
 
