@@ -178,6 +178,28 @@
   console.log(getTime());//返回当前时间
   ```
 
+- 时间戳
+
+  ```js
+  //获取时间戳的几种方法
+  var date = new Date();
+  console.log('时间戳',this.date.valueOf());
+  console.log('时间戳',this.date.getTime());
+  // 简单的写法(最常用的写法)
+  var time1 = +new Date();
+  console.log(this.time1);
+  // h5新增的 获取总的毫秒数 
+  console.log(Date.now());
+  ```
+
+  
+
+- 倒计时案例
+
+  ```js
+  
+  ```
+
   
 
 学到166
