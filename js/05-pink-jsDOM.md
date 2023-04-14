@@ -139,7 +139,7 @@
   // 2. innerHTML 识别html标签 W3C标准 保留空格和换行
   wzi.innerHTML = '<strong>今天是：</strong> 2023'; //能够识别出strong标签
   ```
-  
+
 - 点击切换图片
 
   ```js
@@ -339,10 +339,334 @@
 - 密码验证信息
 
   ```js
-  
+  <style>
+  .message{
+          display: inline-block;
+          font-size: 12px;
+          color: #999;
+          background-color: #bbe0e0;
+      }
+  .wrong{
+      color: red;
+  }
+  .right{
+      color: green;
+  }
+  </style>
+  <body>
+      <div style="display: flex;">
+          <input type="password" class="ipt">
+          <div class="message">请输入6~16位密码</div>
+      </div>
+      <script>
+          var ipt = document.querySelector('.ipt');
+          var message = document.querySelector('.message');
+          ipt.onblur = function() {
+              if(this.value.length < 6 || this.value.length > 16 ){
+                  message.className = 'message wrong';
+                  message.innerHTML = '密码格式正确';
+              } else {
+                  message.className = 'message right';
+                  message.innerHTML = '密码格式正确';
+              }
+          }
+      </script>
+  </body>
   ```
 
+- 自定义属性的操作
+
+  ```js
+  // 获取属性值
+  element.属性  获取属性值
+  element.getAttribute('属性');
   
+  // 区别
+  element.属性  获取内置属性值(元素本身自带属性)
+  element.getAttribute('属性');  主要获取自定义的属性(标准) 程序自定义的属性
+  
+  <div id="demo" index="1"></div>
+      <script>
+          var div = document.querySelector('div');
+          // 1.获取元素的属性值
+          // (1) element.属性
+          console.log(div.id);// demo
+          // (2) element.getAttribute('属性') get获取  attribute 属性的意思
+          console.log(div.getAttribute('id'));// demo
+          console.log(div.getAttribute('index'));// 1
+  
+  	    // 2.设置元素属性值
+          // (1) element.属性 = '值'
+          div.id = 'test'; // id变成了test
+          // (2) element.setAttribute('属性', '值'); 主要针对自定义属性
+          div.setAttribute('index', 2); // index的值变为2
+  
+          // 3.移除属性 removeAttribute(属性)
+          div.removeAttribute('index');//去除index属性
+      </script>
+  ```
+
+- 节点操作
+
+  ```html
+  <body>
+      <div class="box">
+          <span class="erweima"></span>
+      </div>
+      <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+      </ul>
+      <script>
+          // 1. 父节点 parentNode
+          var erweima = document.querySelector('.erweima');
+          // 获取erweima的父级节点：
+          var box = document.querySelector('.box');//传统的获取方法
+          
+          // 使用parentNode获取
+          console.log(erweima.parentNode);//得到父节点box
+  
+          // 2. 子节点 parentNode.children(非标准)
+          var ul = document.querySelector('ul');
+          console.log(ul.children);
+  
+          // 3. firstElenentChild 返回第一个子元素节点
+          console.log(ul.firstElementChild);
+          console.log(ul.lastElementChild);
+  
+          // 4. 创建节点元素
+          var ol = document.createElement('ol');
+          // 5. 添加节点 node.appendChild(child)  node 父级节点  child 子级节点
+          // 后面追加元素，类似于数组的push
+          ul.appendChild(ol);
+          console.log('添加ol标签',ul);
+          // 6. 添加节点 node.insertBefore(child, 指定元素);
+          var a = document.createElement('a');
+          ul.insertBefore(a,ul.children[0]);
+          console.log('添加a标签',ul);
+          
+          // 删除元素 node.removeChild(child);
+          ul.removeChild(ul.children[0]);
+          
+          // 复制节点 node.cloneNode();
+          // node.cloneNode(); 括号为空或者里面是false 为浅拷贝，只复制标签不复制标签里的内容
+          var lili  = ul.children[0].cloneNode();
+          ul.appendChild(lili);
+          
+      </script>
+  </body>
+  ```
+
+- 创建元素的三种方式
+
+  ```html
+  <body>
+      <button>点击</button>
+      <p>kyrie</p>
+      <script>
+      	// 三种创建元素的方式
+          // 1.document.write() 创建元素 如果页面文档流加载完毕，再调用会导致页面重绘
+          // 一般不用它
+          var btn = document.querySelector('button');
+          btn.onclick = function(){
+              document.write('<div>123</div>');
+          }
+          // 2. innerHTML 创建元素(常用)
+          var inner = document.querySelector('.inner');
+          var create = document.querySelector('.create');
+          var a = document.createElement('a');
+          create.appendChild(a);
+          
+      </script>
+  </body>
+  ```
+
+  | 方法                     | 特点                                                         |
+  | ------------------------ | ------------------------------------------------------------ |
+  | document.write()         | 直接写入页面内容，但文档流执行完毕，则它会导致页面全部重绘(一般不用它) |
+  | element.innerHTML        | 将内容写入某个DOM节点，不会导致页面全部重绘(常用，效率高)    |
+  | document.createElement() | 创建多个元素，效率较低但是结构清晰                           |
+
+- 注册事件的两种方式
+
+  ```html
+  <body>
+      <button>传统注册事件</button>
+      <button>方法监听注册事件</button>
+      <script>
+      	var btns = document.querySelectorAll('button');
+          // 1. 传统方式注册事件
+          // 唯一性：执行函数时只会执行最后一个
+          btns[0].onclick = function (){
+              alert('弹窗111');
+          }
+          btns[0].onclick = function (){
+              alert('弹窗222');
+          }
+          // 2. 事件侦听注册事件 addEventListener
+          // 先后执行：从上往下执行函数
+          btns[1].addEventListener('click',function(){
+              alert('哈哈哈');
+          })
+          btns[1].addEventListener('click',function(){
+              alert('哈哈哈滴滴滴');
+          })
+      </script>
+  </body>
+  ```
+
+- 删除事件(解绑事件)
+
+  ```html
+  <body>
+      <div>111</div>
+      <div>222</div>
+      <script>
+      	var divs = document.querySelectAll('div');
+          // 1. 传统方式删除事件
+          divs[0].onclick = function(){
+              alert(11);
+              //弹窗完成后销毁方法
+              div.onclick = null;
+          }
+          // 2. removeEventListener 删除事件
+          divs[1].addEventListener('click',fn) // 里面的fn 不需要调用小括号
+          function fn(){
+              alert(22);
+              divs[1].removeEventListener('click', fn);// 移除
+          }
+      </script>
+  </body>
+  ```
+
+- 事件对象
+
+  ```html
+  <body>
+      <div>123</div>
+      <a>点击</a>
+      <script>
+      	// 常见事件对象的属性和方法  event 就是一个事件对象
+          var div = document.querySelector('div');
+          div.onclick = function(event) {
+              console.log('事件对象', event);
+          }
+          // e.target 返回的是触发事件的对象(元素)   this 返回的是绑定事件的对象(元素)
+           var a = document.querySelector('a');
+          a.addEventListener('click', function(e){
+              console.log('触发',e.target);
+              console.log(this);
+          })
+          
+      </script>
+  </body>
+  ```
+
+- 阻止冒泡行为
+
+  dom推荐的标准 stopPragation();    stop 停止   pragation  传播 
+
+- 事件委托
+
+  ```html
+  <body>
+      <ul>
+          <li>111</li>
+          <li>222</li>
+          <li>333</li>
+      </ul>
+      <script>
+      	// 事件委托原理： 给父节点添加侦听器，利用事件冒泡影响每一个子节点
+          var ul = document.querySelect('ul');
+          ul.addEventListener('click',function(e){
+              // e.target 这个可以得到我们的点击对象
+              e.target.style.backgroundColor = 'pink';
+          })
+      </script>
+  </body>
+  ```
+
+- 禁止选中文字和右击菜单
+
+  ```html
+  <body>
+     <div>这是一段不能复制的文字</div>
+     <script>
+          // 1.contextmenu  禁用右键菜单
+          document.addEventListener('contextmenu',function(e){
+              e.preventDefault();
+          })
+          // 2.禁止选中文字
+          document.addEventListener('selectstart', function(e){
+              e.preventDefault();
+          })
+     </script> 
+  </body>
+  ```
+
+- 常用鼠标事件对象
+
+  | 鼠标事件对象 | 说明                                  |
+  | ------------ | ------------------------------------- |
+  | e.clientX    | 鼠标返回相对于浏览器窗口可视区的x坐标 |
+  | e.clientY    | 鼠标返回相对于浏览器窗口可视区的y坐标 |
+  | e.pageX      | 鼠标返回相对于文档页面的x坐标(重点)   |
+  | e.pageY      | 鼠标返回相对于文档页面的y坐标(重点)   |
+  | e.screenX    | 鼠标返回相对于电脑屏幕的x坐标         |
+  | e.screenY    | 鼠标返回相对于电脑屏幕的y坐标         |
+
+- 鼠标追踪事件
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>图片追随鼠标事件</title>
+      <style>
+          img {
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              width: 40px;
+              height: 40px;
+          }
+      </style>
+  </head>
+  
+  <body>
+      <img src="../image/milu.jpg" alt="">
+      <script>
+          var pic = document.querySelector('img');
+          document.addEventListener('mousemove', function (e) {
+              // 每次鼠标移动，就会获得最新的鼠标坐标, 把这个x和y坐标作为图片的top和left 的值
+              var x = e.pageX;
+              var y = e.pageY;
+              console.log('x坐标' + x, 'y坐标' + y);
+              // -20是为了鼠标能点在图片的中心点
+              pic.style.left = x - 20 + 'px';
+              pic.style.top = y - 20 + 'px';
+  
+          })
+      </script>
+  </body>
+  
+  </html>
+  ```
+
+- 常用键盘事件
+
+  | 方法     | 作用                                                         |
+  | -------- | ------------------------------------------------------------ |
+  | keyup    | 按键弹起的时候触发(e的key和keyCode不区分字母大小写)          |
+  | keydown  | 按键被按下的时候触发(e的key和keyCode不区分字母大小写)        |
+  | keypress | 按键被按下的时候触发(但是它不识别功能键，比如ctrl shift箭头等，e的key和keyCode能够区分字母大小写) |
+
+  学到266
 
 > ​		当事情发展到完全超出你的能力，你根本无法去影响的时候，你只能接受。就算你感到痛苦和烦恼，难道结局会改变吗？与其烦恼这种事情，不如不去管它。我们的时间很宝贵，不要用于那些改变不了的事情，而要用于你能改变的事情。
 
@@ -355,23 +679,3 @@
 > “你还年轻，别被体制的条条框框同化了，否则，你永远只能按照别人规划好的路走，如果你没有背景，你的这条路，还容易被有背景的人顶替。你只能是别人的手脚，替别人赚钱，你的时间是别人的，你的钱是别人给你的，奋斗一生，也不会有出路。”
 
 > 我们应该做一个积极行动的悲观主义者，对未来低期望，但只要是值得的，就坚定去做。当一个有前途的新项目出现在你面前时，不妨认定它很难成功，但是如果你相信这个项目，即便赚不到钱你也想做，那么无论如此，你要去试一下。
-
-
-
-
-
-
-
-
-
-
-
-
-
-经度：106 : 32 : 12.9071039999834625          106.32129071039999834625
-
-纬度：29 : 33 : 37.6391600000059157             29.33376391600000059157
-
-106.54064600000000000000,29.55765400000000000000
-
-106.32129071039999834625,29.33376391600000059157
