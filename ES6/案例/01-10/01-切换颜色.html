@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环用var和let的区别</title>
+    <style>
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item {
+            width: 180px;
+            height: 80px;
+            margin-right: 10px;
+            border: 1px solid rgb(78, 110, 197);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>点击切换颜色</h2>
+        <div style="display: flex;">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+    <script>
+        // 获取item事件
+        let items = document.getElementsByClassName('item');
+        // 遍历并绑定事件
+        for(let i = 0; i <items.length;i++){
+            // 修改当前元素的背景
+            items[i].onclick = function(){
+                // this.style.backgroundColor = 'pink';
+                // let 声明时才有效
+                items[i].style.backgroundColor = 'pink';
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

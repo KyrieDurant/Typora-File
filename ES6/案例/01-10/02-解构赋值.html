@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量的解构赋值</title>
+</head>
+
+<body>
+    <script>
+        // ES6 允许按照一定模式从数组和对象中提取值，对变量进行赋值
+        // 这种情况被称为解构赋值
+        // 1.数组的结构
+        const F4 = ['durant', 'irving', 'harden', 'curry'];
+        let [kd, ky, hd, sc] = F4;
+        console.log(kd); // durant
+        console.log(ky); // irving
+        console.log(hd); // harden
+        console.log(sc); // curry
+
+        // 2.对象的解构
+        const sun = {
+            name: 'dunant',
+            number: 35,
+            like: function(){
+                console.log('Sun Championship!');
+            }
+        }
+        // let {name,number,like} = sun;
+        // console.log(name);
+        // console.log(number);
+        // console.log(like);
+        // like();
+
+        // 实际应用
+        let {like} = sun;
+        like();
+    </script>
+</body>
+
+</html>

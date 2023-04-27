@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise-封装</title>
+    <script src="./promise.js"></script>
+</head>
+<body>
+    <script>
+        // 实例化对象
+        let p = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve('OK');
+                // reject('Error');
+            // 抛出异常
+            // throw('error');
+            }, 1000);
+        });
+        console.log(p);
+
+        // resolve 方法
+        const q = Promise.resolve('OK');
+        const q2 = Promise.resolve(new Promise((resolve, reject) =>{
+            // resolve('Success');
+            reject('err');
+        }));
+        // console.log(q2);
+        const q3 = Promise.resolve(Promise.resolve('Oh yeah~'));
+        // console.log(q3);
+
+        // reject 方法
+        const s = Promise.reject('Error');
+        // console.log(s);
+        const s2 = Promise.reject(new Promise((resolve, reject) =>{
+            resolve('OK');
+            // reject('err');
+        }));
+        // console.log(s2);
+
+        // all 方法
+        const h = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve('OK');
+            }, 1000);
+        });
+        const h2 = Promise.resolve('Success');
+        // const h2 = Promise.reject('err');
+
+        const h3 = Promise.resolve('Oh yeah');
+        // 调用 all 方法
+        let result = Promise.all([h,h2,h3]);
+        // console.log(result);
+
+        // 调用 race 方法
+        let rac = Promise.race([h,h2,h3]);
+        // console.log(rac);
+
+
+
+
+        // 执行 then 方法
+        // const res = p.then(value =>{
+        //     console.log(value);
+        //     // return 'hello Promise';
+        //     // return new Promise((resolve,reject)=>{
+        //     //     // resolve('success');
+        //     //     reject('Oh Noo!!!');
+        //     // })
+        //     // 抛出异常
+        //     // throw 'FAIL';
+        // }, reason =>{
+        //     console.warn(reason);
+        //     // throw 'ERROR';
+        // })
+        // console.log(res);
+
+        // 执行catch方法
+        // let res = p.catch(reason => {
+        //     console.warn(reason);
+        // })
+        // console.log(res);
+
+        // 异常穿透
+        // p.then(value =>{
+        //     console.log(111);
+        // }).then(value =>{
+        //     console.log(222);
+        //     throw 'ERROR';
+        // }).then(value =>{
+        //     console.log(333);
+        // }).catch(reason =>{
+        //     console.warn(reason);
+        // })
+
+        // 值传递
+        // p.then()
+        // .then(value =>{
+        //     console.log(222);
+        //     // throw 'ERROR';
+        // }).then(value =>{
+        //     console.log(333);
+        // }).catch(reason =>{
+        //     console.warn(reason);
+        // })
+
+        
+        // 异步执行
+        let d1 = new Promise((resolve, reject) =>{
+            // resolve('OK');
+            reject('err');
+            // console.log(111);
+        });
+        d1.then(value =>{
+            // console.log(222);
+        },reason =>{
+            // console.log(444);
+        });
+        // console.log(333);
+        
+
+    </script>
+</body>
+</html>

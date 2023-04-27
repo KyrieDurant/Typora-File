@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集合</title>
+</head>
+<body>
+    <script>
+        // 声明一个 set
+        let s = new Set();
+        let s2 = new Set(['kd','ky','hd','kd']);
+        console.log(s, typeof s);
+        // 自动去重
+        console.log(s2);// {'kd', 'ky', 'hd'}
+        console.log(s2.size);// 3
+        // 添加新元素
+        s2.add('pg');
+        console.log(s2);// {'kd', 'ky', 'hd', 'pg'}
+        // 删除元素
+        s2.delete('hd');
+        console.log(s2);// {'kd', 'ky', 'pg'}
+        // 检测(集合里是否含有该元素)
+        console.log(s2.has('kd'));// true 表示集合有'kd' 这个元素
+        console.log(s2);
+        // 清空
+        // s2.clear();
+        // console.log(s2);// {size: 0}
+
+        for(let v of s2){
+            console.log(v);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象方法扩展</title>
+</head>
+<body>
+    <script>
+        // 1. Object.is 判断两个值是否完全相等
+        console.log(Object.is(66,66)); // ===
+        console.log(Object.is(NaN,NaN)); //true
+        console.log(NaN === NaN); // false
+
+        // 2. Object.assign 对象的合并
+        const qiudui1 = {
+            name: 'NEST',
+            qiuy: 'durant and ivring',
+            xyang: 711,
+            wenhua:'中国元素'
+        }
+        const qiudui2 = {
+            name: 'SUNS',
+            qiuy: 'durant and book',
+            xyang: 351,
+            city:'凤凰城'
+        }
+        // Object.assign(对象1,对象2)  合并后对象1和2重复的元素对象里1的会被2的覆盖掉，其他元素添加
+        let xqiud = Object.assign(qiudui1,qiudui2);
+        console.log(xqiud);
+
+        // 3. Object.setPrototypeOf 设置原型对象   Object.getPrototypeOf 
+        const chao = {
+            name: '杜小帅'
+        }
+        const cities = {
+            cunz: ['OKC','NEST','SUNS']
+        }
+        Object.setPrototypeOf(chao,cities);
+        console.log(Object.getPrototypeOf(chao));
+        console.log(chao);
+
+        let a = 8000 - 1000 - 600 - 500 - 1000 - 1000 - 700 - 500 -300 -200;
+        console.log(a); // 2200
+        // 里面有500是我给你拿去给老弟买衣服的
+        // 还剩2700
+
+
+    </script>
+</body>
+</html>

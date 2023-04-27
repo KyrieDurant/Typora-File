@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol 创建对象属性</title>
+</head>
+<body>
+    <script>
+
+        // 向对象中添加方法 up down
+        let game = {
+            name:'俄罗斯方块',
+            up: function(){
+                console.log('我本来就在的');
+            },
+            down: function(){
+                console.log('哈哈哈我也在');
+            },
+        }
+
+        // 声明一个对象
+        let methods = {
+            up: Symbol(),
+            down: Symbol()
+        };
+
+        game[methods.up] = function(){
+            console.log('我是后来的up');
+        }
+
+        game[methods.down] = function(){
+            console.log('我是后来的down呀');
+        }
+        console.log(game);
+
+
+        // 另外一种写法：
+        let youxi = {
+            name: '魂斗罗',
+            [Symbol('go')]: function(){
+                console.log('冲！');
+            },
+            [Symbol('back')]: function(){
+                console.log('回来！');
+            },
+        }
+        console.log(youxi);
+
+
+    </script>
+</body>
+</html>

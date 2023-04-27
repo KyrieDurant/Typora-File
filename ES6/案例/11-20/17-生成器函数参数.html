@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器函数参数</title>
+</head>
+<body>
+    <script>
+        // 声明一个生成器函数
+        function * gen(arg){
+            console.log(arg);
+            let one = yield 111;
+            console.log(one);
+            yield 222;
+            yield 333;
+        }
+        // 执行获取迭代器对象
+        let iterator = gen('ccc');
+        console.log(iterator.next());
+        // next 方法可以传入实参
+        console.log(iterator.next('bbb'));
+        console.log(iterator.next());
+
+    </script>
+</body>
+</html>

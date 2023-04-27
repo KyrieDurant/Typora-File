@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+</head>
+<body>
+    <script>
+        // 声明 Map
+        let m = new Map();
+        // 添加元素
+        m.set('name','BLKY');
+        m.set('change',function(){
+            console.log('改变');
+        });
+        console.log('查看数组',m);
+        let abc = {
+            hope: 'SUNS'
+        };
+        m.set(abc,['kd','bk','pl']);
+        console.log(m);
+        // 查看长度
+        console.log(m.size);// 3
+        // 删除
+        // m.delete('name');
+        // console.log('删掉以后',m);
+        //获取
+        console.log('获取change的值：',m.get('change'));
+        console.log('获取abc的值：',m.get(abc));
+        // 清空
+        // m.clear();
+        // console.log('清空',m);
+        // 遍历
+        for(let v of m){
+            console.log(v);
+        }
+    
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set 实践</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        // 1.数组去重
+        // 先new set(arr)集合去重，再在外面套一层[...]的壳就能得到
+        let a = [...new Set(arr)];
+        console.log(a);
+        // 2.交集
+        let arr2 = [4, 5, 6, 5, 6];
+
+        // let result = [...new Set(arr)].filter(item => {
+        //     let s2 = new Set(arr2); // 4 5 6
+        //     if (s2.has(item)) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // });
+        // 简化上面步骤
+        let result = [...new Set(arr)].filter(item => new Set(arr2).has(item));
+        console.log(result);
+
+        // 3.并集
+        // [...arr,...arr2]是先合并数组，然后再使用集合去重再套壳变成数组
+        let union = [...new Set([...arr,...arr2])];
+        console.log(union);
+        // 4.差集
+        let diff = [...new Set(arr)].filter(item => !new Set(arr2).has(item));
+        console.log(diff);
+
+    </script>
+</body>
+
+</html>
