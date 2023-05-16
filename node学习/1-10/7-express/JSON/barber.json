@@ -1,0 +1,36 @@
+{
+    "cloub": "NBA",
+    "player":[
+        {
+            "name":"Kevin Durant",
+            "team": "太阳",
+            "number": 35,
+            "image":"https://img1.imgtp.com/2023/05/08/X85bqYJN.jpg"
+        },
+        {
+            "name":"Kyrie Ivring",
+            "team": "独行侠",
+            "number": 2,
+            "image":"https://img1.imgtp.com/2023/05/08/G3x4iu6t.jpg"
+        },
+        {
+            "name":"James Harden",
+            "team": "76人",
+            "number": 1,
+            "image":"https://img1.imgtp.com/2023/05/08/I8Tvk3fo.jpg"
+        },
+        {
+            "name":"Stephen Curry",
+            "team": "勇士",
+            "number": 30,
+            "image":"https://img1.imgtp.com/2023/05/08/QcIR7Qdb.jpg"
+        },
+        {
+            "name":"Paul George",
+            "team": "快船",
+            "number": 13,
+            "image":"https://img1.imgtp.com/2023/05/08/zniFC3P3.jpg"
+        }
+        
+    ]
+}
